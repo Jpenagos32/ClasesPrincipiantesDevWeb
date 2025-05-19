@@ -1,0 +1,129 @@
+/* Sintaxis general */
+p {
+    /* selector por etiqueta */
+    font-size: 18px;
+    /* cambia el tamaño de la fuente (letra) */
+    font-family: monospace;
+    /* cambia el tipo de fuente (letra) */
+    color: chocolate;
+    /* cambia el color del texto */
+}
+
+button {
+    /* selector por etiqueta */
+    border: none;
+    background-color: aqua;
+    /* cambiar el color del fondo del elemento */
+    padding: 15px;
+}
+
+.texto-secundario {
+    /* selector de clase */
+    color: grey;
+    font-size: 14px;
+    display: inline;
+}
+
+#titulo-especifico {
+    /* selector por ID */
+    font-size: 25px;
+}
+
+.btn-negro {
+    border: 1px solid black;
+    background-color: grey;
+    color: white;
+}
+
+#btn-negro-con-borde {
+    border: 1px solid red;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+
+.margenes {
+    background-color: blue;
+    /* color de fondo */
+    width: 50px;
+    /* ancho */
+    height: 50px;
+    /* alto */
+    /*margin: 10px;*/
+    /* cambia el margen en todas las direcciones */
+    /*margin-top: 9px; /* margen superior */
+    /*margin-right: 18px; /* margen derecho */
+    /*margin-bottom: 25px; /* margen inferior */
+    /*margin-left: 31px; /* margen izquierdo */
+    margin: 31px 0 0 0;
+
+    /*padding: 25px; /* cambia el tamaño interno de los elementos */
+    /*padding-top: 18px; /* padding superior */
+    /*padding-right: 21px; /* padding derecho */
+    /*padding-bottom: 31px; /* padding inferior */
+    /*padding-left: 41px; /* padding izquierdo */
+    padding: 0 0 0 41px;
+
+    /*border: 8px solid; /* bordes del elemento */
+    border-left: 10px solid orange;
+    /* borde izquierdo */
+    border-right: 10px solid red;
+    /* borde derecho */
+    border-top: 10px solid red;
+    /* borde superior */
+    border-bottom: 10px solid green;
+    /* border inferior */
+
+    border-radius: 50%;
+    /* suavizado de bordes */
+}
+
+/* sintaxis nueva (depende de la versión del navegador) */
+
+.container {
+    /* display: flex; */
+
+    /* controlar posición */
+    /* position: static; */
+    /* comportamiento por defecto */
+    /* position: relative; */
+    /* se mueve respecto a su posicion inicial depende de "top" "bottom" "right" "left"*/
+    /* bottom: 43px; */
+    /* top: 43px; */
+    /* right: 43px; */
+    /* left: 43px; */
+    /*position: fixed; /* mantiene la posicion fija independientemente del scroll */
+    /* top: 25%; */
+    /* right: 50%; */
+
+    display: flex;
+    justify-content: space-evenly;
+    /* centrar el elemento horizontalmente */
+    align-items: center;
+    /* centrar el elemento verticalmente */
+    flex-direction: column;
+    /* cambiar la dirección de los elementos */
+    gap: 12px;
+    /* espaciado entre elementos */
+
+    & .content {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        border: 3px solid red;
+        /*position: absolute; /* depende del contenedor padre */
+    }
+}
+
+.container-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.container-grid>.content-grid {
+    width: 100%;
+    height: 80px;
+    background-color: yellow;
+    border: 3px solid green;
+}

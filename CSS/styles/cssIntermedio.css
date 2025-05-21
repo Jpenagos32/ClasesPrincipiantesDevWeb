@@ -1,0 +1,349 @@
+/* Variables CSS */
+/* siempre debe definirse al inicio del documento */
+:root {
+    --pepito: red;
+    --color-fondo-azul: blue;
+    --tamano-letra: 21px;
+    --tipo-fuente: 'Monospace', sans-serif;
+    --ancho: 100px;
+    --alto: 100px;
+    --fondo-oscuro:#666666;
+    --texto-claro: #d1d1d1;
+}
+
+/* Uso de variables */
+.con-variables {
+    background-color: var(--color-fondo-azul);
+    width: var(--ancho);
+    height: var(--alto);
+}
+
+.con-variables2 {
+    background-color: var(--pepito);
+    width: var(--ancho);
+    height: var(--alto);
+}
+
+/* ********************************************************************** */
+
+
+.padre {
+    display: flex;
+    flex-direction: column;
+}
+
+.hijo {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}
+
+/* selectores avanzados */
+/* ********************************************************************** */
+
+/* nth-child() */
+/* 
+opciones posibles
+ - Numeros para indicar un elemento especifico
+ - Even: pares
+ - Odd: impares
+ - Xn: selecciona cada X cantidad de elementos
+*/
+
+/* 
+Sintaxis básica
+
+selector:nth-child(n) {
+    propiedad: valor;
+}
+*/
+.hijo:nth-child(3) {
+    background-color: red;
+    width: 200px;
+    margin-top: 20px;
+}
+
+/* ********************************************************************** */
+
+/* first-of-type() */
+/* selecciona el primer elemento del selector especificado */
+p {
+    font-size: 18px;
+    color: red;
+    font-family: monospace;
+}
+
+p:first-of-type {
+    color: blue;
+}
+
+/* No funciona con clases unicamente con etiquetas */
+.con-clase:first-of-type {
+    color: green;
+}
+
+/* ********************************************************************** */
+
+/* :not() */
+/* aplica los estilos a todos los elementos excepto a los indicados en el parentesis del selector */
+/* 
+sintaixs:
+p:not(.nombre-clase){
+    propiedad:valor;
+}
+*/
+p:not(.con-clase) {
+    font-weight: bold;
+    color: grey;
+}
+
+/* ********************************************************************** */
+/* :hover */
+/* cambia los estilos del elemento al posicionar el puntero sobre el */
+
+.hijo:hover {
+    background-color: grey;
+}
+
+h2:hover {
+    color: magenta;
+}
+
+button {
+    padding: 8px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: chocolate;
+    }
+}
+
+/* ********************************************************************** */
+
+/* :focus */
+/* cambia el comportamiento de un input al enfocarse en el */
+input {
+    padding: 8px;
+    margin-top: 10px;
+}
+
+input:focus {
+    background-color: #ff6060;
+}
+
+/* ********************************************************************** */
+
+/* PSEUDO ELEMENTOS */
+
+/* ::before ::after */
+/* sintaxis
+    selector::after {
+        propiedad:valor;
+    }
+*/
+h2::before {
+    content: '⚠️';
+}
+
+h2::after {
+    content: '🤣';
+}
+
+.fuego {
+    &::before {
+        content: '🔥';
+    }
+
+    &::after {
+        content: '🔥';
+    }
+}
+
+/* ********************************************************************** */
+
+/* ::marker */
+/* sirve para cambiar el estilo de las viñetas en las listas */
+li::marker {
+    color: cyan;
+    font-size: 30px;
+}
+
+/* ********************************************************************** */
+/* ANIMACIONES Y TRANSICIONES */
+
+/* Transiciones */
+/* sintaxis
+selector {
+    transition: propiedad duración timing-function delay;
+    }
+    opciones para timing-function
+        - ease
+        - linear
+        - ease-in
+        - ease-out
+        - ease-in-out
+        */
+        .hijo {
+            background-color: grey;
+    transition: background-color 1s linear;
+}
+
+.hijo:hover{
+    background-color: rgb(25, 0, 255);
+}
+
+/* cubic-bezier() */
+/* personalizar la curva de aceleracion de las transiciones */
+/* sintaxis
+cubic-bezier(x1, y1, x2, y2)
+*/
+button{
+    transition: transform 0.5s cubic-bezier(0.1, 0.1, 0.8, 1);
+}
+
+button:hover{
+    transform: scale(1.2);
+}
+
+/* ********************************************************************** */
+
+/* Animaciones */
+
+/* @keyframes */
+/* sintaxis
+    @keyframes nombre-animacion {
+        0% {
+            propiedad:valor-inicial:
+        }
+        
+        100% {
+            propiedad:valor-final;
+        }
+    }
+*/
+@keyframes movimiento-horizontal {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(50px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animado {
+    width: 50px;
+    height: 50px;
+    border: 2px solid blue;
+
+    /* aplicar animación */
+    /* sintaxis
+        animation: nombre duración timing-function delay iteration-count direction fill-mode;
+    */
+    animation: movimiento-horizontal 2s infinite;
+}
+
+/* ********************************************************************** */
+
+/* GRID Y FLEXBOX */
+
+/* GRID */
+.contenedor-grid {
+    display: grid;
+
+    grid-template-areas: 
+        'header header'
+        'sidebar contenido'
+        'footer footer'
+    ;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 80px auto 60px;
+
+}
+
+.contenido-grid {
+    width: 100%;
+    height: 50px;
+    border: 1px solid green;
+}
+
+.navegacion {
+    grid-area: header;
+    background-color: red;
+}
+
+.lateral-izquierdo {
+    grid-area: sidebar;
+    background-color: blue;
+}
+
+.lateral-derecho {
+    grid-area: contenido;
+    background-color: yellow;
+}
+
+.final {
+    grid-area: footer;
+    background-color: grey;
+}
+
+/* grid-auto-flow */
+.contenido-grid1 {
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    border: 1px solid black;
+}
+
+.contenedor-grid1 {
+    display: grid;
+    /*place-items: center; /* centra un unico elemento */
+    grid-auto-flow: column;
+    justify-content: center; /* hoprizontal */
+    align-content: center; /* vertical */
+
+    &.lateral-derecho1 {
+        justify-self: center;
+        align-self: center;
+    }
+}
+
+/* ********************************************************************** */
+/* FLEXBOX */
+.contenedor-flexbox{
+    display: flex;
+    /* permitir que los elementos continuen en la siguiente linea */
+    flex-wrap: wrap;
+}
+
+.contenido-flexbox {
+    width: 80px;
+    height: 80px;
+    background-color: grey;
+    border: 1px solid black;
+
+    &:nth-child(3) {
+        /* cambia la posicion de los elementos flex sin necesidad de tocar html */
+        order: -1;
+        /* align-self: flex-start; */
+    }
+}
+
+.bg-red{
+    background-color: red;
+}
+
+/* ********************************************************************** */
+/* Dark Mode */
+.dark-mode {
+    background-color: var(--fondo-oscuro);
+    color: var(--texto-claro);
+}
+
+.light-mode {
+    background-color: #fcb5b5;
+    color: black;
+}
